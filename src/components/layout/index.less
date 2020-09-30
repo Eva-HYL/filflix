@@ -1,0 +1,42 @@
+.app {
+  .app-header {
+    min-height: 64px;
+
+    .navbar {
+      padding: 4px 25px;
+      .logo {
+        display: grid;
+        grid-template-columns: 24px 1fr;
+        justify-content: center;
+        align-items: center;
+        grid-gap: 10px;
+        margin-right: 80px;
+      }
+      .search {
+        max-width: 528px;
+        float: left;
+        margin-top: 7px;
+        .rs-input-group-addon {
+          padding: 10px 13px 8px 13px;
+        }
+        .rs-input {
+          background-color: #384046;
+          border: 1px solid transparent;
+          color: #fff;
+          &:focus {
+            border: 1px solid #fff;
+          }
+        }
+      }
+      .btn {
+        color: #fff;
+        width: 95px;
+        height: 38px;
+      }
+
+      .rs-navbar-nav .rs-nav-item > .rs-nav-item-content {
+        padding: 10px;
+      }
+    }
+  }
+}
