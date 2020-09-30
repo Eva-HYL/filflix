@@ -1,9 +1,10 @@
 import React from 'react'
 import Head from 'next/head'
-import { Button, Content, Header, Icon, Input, InputGroup, Nav, Navbar } from 'rsuite'
+import { Button, Content, Header, Input, InputGroup, Nav, Navbar } from 'rsuite'
 import '../../styles/default.less'
 import { Container } from 'next/app'
 import './index.less'
+import Svg from '../Svg'
 interface LayoutProps {
   children: React.ReactNode
 }
@@ -19,13 +20,13 @@ const Layout = ({ children }: LayoutProps): React.ReactElement => {
           <Header className='app-header'>
             <Navbar appearance='inverse' className='navbar'>
               <Navbar.Header className='logo'>
-                <img src='logo.svg' alt='logo' />
-                <img src='logo-font.svg' alt='logo' />
+                <Svg name='logo' color='#fff' />
+                <Svg name='logo-font' color='#fff' width='52' height='24' />
               </Navbar.Header>
               <Navbar.Body>
                 <InputGroup inside className='search'>
                   <InputGroup.Addon>
-                    <img src='nav-btn-search-h.svg' alt='search' />
+                    <Svg name='nav-btn-search-h' />
                   </InputGroup.Addon>
                   <Input size='lg' />
                 </InputGroup>

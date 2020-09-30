@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint:tsx": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "format": "prettier --write \"src/**/*.+(js|jsx|ts|tsx|json|yml|yaml|scss|less|css|md)\""
+    "format": "prettier --write \"src/**/*.+(js|jsx|ts|tsx|json|yml|yaml|scss|less|css|md)\"",
+    "icon": "svg-sprite-generate -d src/images/ -o public/sprite.svg"
   },
   "dependencies": {
     "@zeit/next-less": "^1.0.1",
@@ -27,6 +28,7 @@
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
     "prettier": "^2.1.2",
+    "svg-sprite-generator": "^0.0.7",
     "typescript": "^4.0.3"
   },
   "lint-staged": {

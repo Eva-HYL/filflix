@@ -3,6 +3,7 @@ import Layout from '../../components/layout'
 import { Button, Panel } from 'rsuite'
 import './index.less'
 import VideoBox from '../../components/video-box'
+import Svg from '../../components/Svg'
 const Home = () => {
   return (
     <>
@@ -10,8 +11,8 @@ const Home = () => {
         <Panel className='banner'>
           <h1>Welcome to Filflix</h1>
           <Button className='upload-btn' size='lg'>
-            <img src='btn-upload-h.svg' alt='upload' />
-            Upload video
+            <Svg name='btn-upload-h' width='18' height='18' offsetY='4' style={{ marginRight: 10 }} />
+            <span>Upload video</span>
           </Button>
         </Panel>
         <Panel className='container'>

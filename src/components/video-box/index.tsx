@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Panel } from 'rsuite'
+import Svg from '../Svg'
 import './index.less'
 
 interface VideoBoxProps {
@@ -28,7 +29,7 @@ const VideoBox = ({ title, fil, img, url }: VideoBoxProps) => {
         {show ? (
           <div className='play-btn'>
             <Button appearance='link' onClick={onClick}>
-              <img src='btn-play-h.svg' alt='play' />
+              <Svg name='btn-play-h' width={40} height={40} />
             </Button>
           </div>
         ) : (
