@@ -17,12 +17,13 @@ const Home = () => {
         </Panel>
         <Panel className='container'>
           <VideoBox
+            size='lg'
             title='This is a video about blockchain，this dddd'
-            fil='2K'
             url='www.baidu.com'
             img='/banner.png'
           />
           <VideoBox
+            size='lg'
             title='This is a video about blockchain，this dddd'
             fil='12K'
             url='www.baidu.com'
