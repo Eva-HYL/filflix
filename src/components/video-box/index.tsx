@@ -1,3 +1,4 @@
+import { useRouter } from 'next/dist/client/router'
 import React, { useState } from 'react'
 import { Button, Panel } from 'rsuite'
 import Svg from '../Svg'
@@ -17,6 +18,7 @@ const VideoBox = ({ title, fil, img, url, size }: VideoBoxProps) => {
   const height = size === 'lg' ? 195 : 124
   const fontSize = size === 'lg' ? 16 : 14
   const margin = size === 'lg' ? '12px 0 16px 0' : '8px 0 8px 0'
+  const route = useRouter()
   const onEnter = () => {
     setShow(true)
   }
@@ -25,6 +27,7 @@ const VideoBox = ({ title, fil, img, url, size }: VideoBoxProps) => {
   }
 
   const onClick = () => {
+    route.push('/play')
     return url
   }
   return (

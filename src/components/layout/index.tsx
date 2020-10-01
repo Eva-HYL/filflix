@@ -5,6 +5,7 @@ import '../../styles/default.less'
 import { Container } from 'next/app'
 import './index.less'
 import Svg from '../Svg'
+import Link from 'next/link'
 interface LayoutProps {
   children: React.ReactNode
 }
@@ -19,9 +20,13 @@ const Layout = ({ children }: LayoutProps): React.ReactElement => {
         <Container>
           <Header className='app-header'>
             <Navbar appearance='inverse' className='navbar'>
-              <Navbar.Header className='logo'>
-                <Svg name='logo' color='#fff' />
-                <Svg name='logo-font' color='#fff' width='52' height='24' />
+              <Navbar.Header>
+                <Link href='/'>
+                  <div className='logo'>
+                    <Svg name='logo' color='#fff' />
+                    <Svg name='logo-font' color='#fff' width='52' height='24' />
+                  </div>
+                </Link>
               </Navbar.Header>
               <Navbar.Body>
                 <InputGroup inside className='search'>

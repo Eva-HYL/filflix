@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { Form, FormGroup, ControlLabel, FormControl, ButtonToolbar, Button } from 'rsuite'
 import Svg from '../../components/Svg'
 import './index.less'
@@ -6,7 +7,7 @@ const SignUp = () => {
   return (
     <div className='signUp'>
       <div className='signUp-bg'>
-        <img src='signUp-bg.png' alt='signUp' />
+        <img src='login-bg.png' alt='signUp' />
       </div>
       <div className='signUp-box'>
         <div className='logo-box'>
@@ -27,10 +28,16 @@ const SignUp = () => {
 
             <FormGroup>
               <ButtonToolbar>
-                <Button color='violet'>Sign in</Button>
+                <Button color='violet'>Sign up</Button>
               </ButtonToolbar>
             </FormGroup>
           </Form>
+          <div>
+            Already have a account?
+            <Link href='/login'>
+              <span style={{ color: '#6753F4' }}> Sign in </span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
