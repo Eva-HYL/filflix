@@ -1,8 +1,13 @@
+import { useRouter } from 'next/dist/client/router'
 import React from 'react'
 import { Form, FormGroup, ControlLabel, FormControl, ButtonToolbar, Button } from 'rsuite'
 import Svg from '../../components/Svg'
 import './index.less'
 const Login = () => {
+  const route = useRouter()
+  const toHome = () => {
+    route.push('/')
+  }
   return (
     <div className='login'>
       <div className='login-bg'>
@@ -10,8 +15,8 @@ const Login = () => {
       </div>
       <div className='login-box'>
         <div className='logo-box'>
-          <Svg name='logo' color='#000' style={{ marginRight: 10 }} />
-          <Svg name='logo-font' color='#000' width='52' height='24' />
+          <Svg name='logo' color='#000' style={{ marginRight: 10 }} onClick={toHome} />
+          <Svg name='logo-font' color='#000' width='52' height='24' onClick={toHome} />
           <h1>Welcome to Filflix</h1>
         </div>
         <div className='login-form'>

@@ -6,11 +6,19 @@ import { Container } from 'next/app'
 import './index.less'
 import Svg from '../Svg'
 import Link from 'next/link'
+import { useRouter } from 'next/dist/client/router'
 interface LayoutProps {
   children: React.ReactNode
 }
 
 const Layout = ({ children }: LayoutProps): React.ReactElement => {
+  const route = useRouter()
+  const toLogin = () => {
+    route.push('/login')
+  }
+  const toSignUp = () => {
+    route.push('/sign-up')
+  }
   return (
     <div>
       <Head>
@@ -37,12 +45,12 @@ const Layout = ({ children }: LayoutProps): React.ReactElement => {
                 </InputGroup>
                 <Nav pullRight>
                   <Nav.Item>
-                    <Button appearance='link' className='btn'>
+                    <Button appearance='link' className='btn' onClick={toLogin}>
                       Sign in
                     </Button>
                   </Nav.Item>
                   <Nav.Item>
-                    <Button color='violet' className='btn'>
+                    <Button color='violet' className='btn' onClick={toSignUp}>
                       Sign up
                     </Button>
                   </Nav.Item>
