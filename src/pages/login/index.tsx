@@ -1,12 +1,43 @@
 import { useRouter } from 'next/dist/client/router'
-import React from 'react'
-import { Form, FormGroup, ControlLabel, FormControl, ButtonToolbar, Button } from 'rsuite'
+import React, { useEffect, useState } from 'react'
+import { Form, FormGroup, ControlLabel, FormControl, ButtonToolbar, Button, Alert, Schema } from 'rsuite'
+import { postLogin, Account } from '../../services/login'
 import Svg from '../../components/Svg'
 import './index.less'
+import { clearLocalCookie, clearLocalStorage } from '../../utils/cookie'
+
+const { StringType } = Schema.Types
 const Login = () => {
   const route = useRouter()
   const toHome = () => {
     route.push('/')
+  }
+
+  useEffect(() => {
+    clearLocalCookie()
+    clearLocalStorage()
+  })
+
+  const model = Schema.Model({
+    email: StringType().isEmail(' Please enter the correct email address'),
+    pwd: StringType(),
+  })
+
+  const [formValue, setFormValue] = useState<Account>({} as Account)
+
+  const onChange = (values: unknown) => {
+    const { email, pwd } = values as Account
+    setFormValue({ email, pwd })
+  }
+
+  const onSubmit = async () => {
+    const data = await postLogin({ ...formValue })
+    if (data.code === 200) {
+      Alert.info('登录成功!')
+      route.replace('/')
+    } else {
+      Alert.error(data.msg)
+    }
   }
   return (
     <div className='login'>
@@ -20,19 +51,21 @@ const Login = () => {
           <h1>Welcome to Filflix</h1>
         </div>
         <div className='login-form'>
-          <Form>
+          <Form model={model} formValue={formValue} onSubmit={onSubmit} onChange={onChange}>
             <FormGroup>
               <ControlLabel>Your e-mail</ControlLabel>
               <FormControl name='email' type='email' placeholder='Name@google.com' />
             </FormGroup>
             <FormGroup>
               <ControlLabel>Your password</ControlLabel>
-              <FormControl name='name' type='passowrd' placeholder='Password' />
+              <FormControl name='pwd' type='password' placeholder='Password' />
             </FormGroup>
 
             <FormGroup>
               <ButtonToolbar>
-                <Button color='violet'>Sign in</Button>
+                <Button color='violet' type='submit'>
+                  Sign in
+                </Button>
               </ButtonToolbar>
             </FormGroup>
           </Form>

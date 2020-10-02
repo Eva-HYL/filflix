@@ -1,18 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
-import { Button, Content, Header, Input, InputGroup, Nav, Navbar } from 'rsuite'
+import { Avatar, Button, Content, Dropdown, Header, Input, InputGroup, Nav, Navbar } from 'rsuite'
 import '../../styles/default.less'
 import { Container } from 'next/app'
 import './index.less'
 import Svg from '../Svg'
 import Link from 'next/link'
 import { useRouter } from 'next/dist/client/router'
+import { getLocalStore, getValueFromLocal } from '../../utils/cookie'
+import { User } from '../../services/login'
 interface LayoutProps {
   children: React.ReactNode
 }
 
 const Layout = ({ children }: LayoutProps): React.ReactElement => {
   const route = useRouter()
+  const [user, setUser] = useState<User>({} as User)
+  useEffect(() => {
+    const token = getValueFromLocal('token')
+    if (token) {
+      setUser({ email: getLocalStore('email') ?? '', nickname: '' })
+    }
+  }, [])
+
   const toLogin = () => {
     route.push('/login')
   }
@@ -43,18 +53,43 @@ const Layout = ({ children }: LayoutProps): React.ReactElement => {
                   </InputGroup.Addon>
                   <Input size='lg' />
                 </InputGroup>
-                <Nav pullRight>
-                  <Nav.Item>
-                    <Button appearance='link' className='btn' onClick={toLogin}>
-                      Sign in
-                    </Button>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Button color='violet' className='btn' onClick={toSignUp}>
-                      Sign up
-                    </Button>
-                  </Nav.Item>
-                </Nav>
+
+                {user ? (
+                  <Nav pullRight>
+                    <Dropdown
+                      renderTitle={() => {
+                        return (
+                          <Avatar style={{ background: '#7B1FA2' }} circle>
+                            {user.email?.slice(0, 1)}
+                          </Avatar>
+                        )
+                      }}
+                    >
+                      <Dropdown.Item>
+                        <Link href='/'>My Account</Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                        <Link href='/my-video'>My Video</Link>
+                      </Dropdown.Item>
+                      <Dropdown.Item>
+                        <Link href='/login'>Sign Out</Link>
+                      </Dropdown.Item>
+                    </Dropdown>
+                  </Nav>
+                ) : (
+                  <Nav pullRight>
+                    <Nav.Item>
+                      <Button appearance='link' className='btn' onClick={toLogin}>
+                        Sign in
+                      </Button>
+                    </Nav.Item>
+                    <Nav.Item>
+                      <Button color='violet' className='btn' onClick={toSignUp}>
+                        Sign up
+                      </Button>
+                    </Nav.Item>
+                  </Nav>
+                )}
               </Navbar.Body>
             </Navbar>
           </Header>
