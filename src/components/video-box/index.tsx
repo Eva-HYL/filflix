@@ -14,7 +14,7 @@ interface VideoBoxProps {
 
 const VideoBox = ({ title, fil, img, url, size }: VideoBoxProps) => {
   const [show, setShow] = useState(false)
-  const width = size === 'lg' ? 292 : 185
+  const width = size === 'lg' ? 290 : 185
   const height = size === 'lg' ? 195 : 124
   const fontSize = size === 'lg' ? 16 : 14
   const margin = size === 'lg' ? '12px 0 16px 0' : '8px 0 8px 0'

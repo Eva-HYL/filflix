@@ -1,8 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import VideoBox from '../../components/video-box'
 import Layout from '../../components/layout'
 import './index.less'
-const play = () => {
+import { Videos, getVideo } from '../../services/video'
+import Link from 'next/link'
+
+const Play = () => {
+  const [data, setData] = useState<Videos>({} as Videos)
+
+  useEffect(() => {
+    getVideoList(1, 4)
+  }, [])
+
+  const getVideoList = async (page: number, limit: number) => {
+    const data = await getVideo(page, limit)
+    setData(data)
+  }
   return (
     <Layout>
       <div className='play'>
@@ -29,38 +42,25 @@ const play = () => {
           </div>
         </div>
         <div className='video-list'>
-          <VideoBox
-            size='sm'
-            title='This is a video about blockchain，this dddd'
-            fil='2K'
-            url='www.baidu.com'
-            img='/banner.png'
-          />
-          <VideoBox
-            size='sm'
-            title='This is a video about blockchain，this dddd'
-            fil='2K'
-            url='www.baidu.com'
-            img='/banner.png'
-          />
-          <VideoBox
-            size='sm'
-            title='This is a video about blockchain，this dddd'
-            fil='2K'
-            url='www.baidu.com'
-            img='/banner.png'
-          />
-          <VideoBox
-            size='sm'
-            title='This is a video about blockchain，this dddd'
-            fil='2K'
-            url='www.baidu.com'
-            img='/banner.png'
-          />
+          {data?.videos?.map(item => {
+            return (
+              <VideoBox
+                key={item.id}
+                size='sm'
+                title={item.title}
+                url={item.saveAddress}
+                img={item.imageUrl}
+                fil={item.price}
+              />
+            )
+          })}
+          <div className='more'>
+            <Link href='/'>查看更多...</Link>
+          </div>
         </div>
       </div>
     </Layout>
   )
 }
 
-export default play
+export default Play
