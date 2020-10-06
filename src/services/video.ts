@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie'
-import { get, post, postFile } from './service'
+import { Alert } from 'rsuite'
+import { get, postFile } from './service'
 
 export interface Video {
   id: number
@@ -62,11 +63,12 @@ export interface VideoUploadModel {
 
 const postVideo = (model: VideoUploadModel) => {
   const data = new FormData()
-  data.append('video', model.video as Blob, model.video?.name)
+  data.append('title', model.title)
+  data.append('video', model.video as Blob)
   postFile('/video/upload', data, { token: Cookies.get('token') ?? '' })
     .then(data => {
       if (data) {
-        return data
+        Alert.info(data.msg)
       }
     })
     .catch(error => {

@@ -57,6 +57,8 @@ const Layout = ({ children }: LayoutProps): React.ReactElement => {
                 {user ? (
                   <Nav pullRight>
                     <Dropdown
+                      className='avatar'
+                      placement='bottomEnd'
                       renderTitle={() => {
                         return (
                           <Avatar style={{ background: '#7B1FA2' }} circle>

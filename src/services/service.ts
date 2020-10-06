@@ -45,9 +45,7 @@ export const postFile = (
 ) => {
   return request(url, {
     body: data,
-    mode: 'no-cors',
     headers: {
-      'Content-Type': 'multipart/form-data',
       ...headers,
     },
     method: 'POST',

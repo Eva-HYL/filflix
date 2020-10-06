@@ -26,7 +26,6 @@ const Upload = () => {
   }
 
   const onSubmit = () => {
-    console.log(formValue)
     postVideo(formValue)
   }
 

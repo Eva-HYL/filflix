@@ -38,7 +38,7 @@ const VideoBox = ({ title, fil, img, url, size }: VideoBoxProps) => {
       onMouseLeave={onLeave}
     >
       <div className='img-box'>
-        <img src={img} height={height} alt='card' />
+        <img src={img ?? 'banner.png'} height={height} alt='card' />
         {show ? (
           <div className='play-btn'>
             <Button appearance='link' onClick={onClick}>
