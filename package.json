@@ -1,0 +1,55 @@
+{
+  "name": "filflix",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint:tsx": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "format": "prettier --write \"src/**/*.+(js|jsx|ts|tsx|json|yml|yaml|scss|less|css|md)\"",
+    "icon": "svg-sprite-generate -d src/images/ -o public/sprite.svg"
+  },
+  "dependencies": {
+    "@zeit/next-less": "^1.0.1",
+    "@zeit/next-css": "^1.0.1",
+    "cookie": "^0.4.1",
+    "css-loader": "^4.3.0",
+    "js-cookie": "^2.2.1",
+    "less": "^3.12.2",
+    "next": "9.5.3",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "rsuite": "^4.8.2",
+    "swr": "^0.3.5"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@types/cookie": "^0.4.0",
+    "@types/js-cookie": "^2.2.6",
+    "@types/node": "^14.11.2",
+    "@types/react": "^16.9.49",
+    "eslint": "^7.10.0",
+    "eslint-config-like": "^1.5.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2",
+    "svg-sprite-generator": "^0.0.7",
+    "typescript": "^4.0.3"
+  },
+  "lint-staged": {
+    "src/**/*.+(js|jsx|ts|tsx|json|yml|yaml|scss|less|css|md)": [
+      "npm run format"
+    ],
+    "src/**/*.{ts,tsx}": [
+      "npm run lint:tsx"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}

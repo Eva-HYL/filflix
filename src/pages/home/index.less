@@ -1,0 +1,33 @@
+.banner {
+  border-radius: 0px;
+  height: 500px;
+  background-image: url('/banner.png');
+  .rs-panel-body {
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      color: #fff;
+      font-size: 60px;
+    }
+    .upload-btn {
+      width: 172px;
+      height: 42px;
+      margin-top: 40px;
+      background: linear-gradient(180deg, #19e7f4 0%, #00a5c9 100%);
+      color: #fff;
+    }
+  }
+}
+.container {
+  padding: 40px 88px;
+  .rs-panel-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 290px);
+    grid-gap: 32px;
+  }
+}
