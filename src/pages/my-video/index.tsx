@@ -6,18 +6,32 @@ import VideoBox from '../../components/video-box'
 
 import './index.less'
 const MyVideo = () => {
+  const [page] = useState(1)
+  const [limit, setLimit] = useState(200)
+
   const [data, setData] = useState<Videos>({} as Videos)
 
   useEffect(() => {
-    getVideoList(1, 1000)
-  }, [])
+    getVideoList(page, limit)
+  }, [limit, page])
+
+  const onScroll = (event: React.UIEvent<HTMLDivElement, UIEvent>) => {
+    const container = event.currentTarget.firstChild?.lastChild?.lastChild as Element
+    const height = container.scrollHeight - container.scrollTop - container.clientHeight
+
+    if (height <= 0) {
+      const limitC = limit + 200
+      setLimit(limitC)
+    }
+  }
 
   const getVideoList = async (page: number, limit: number) => {
     const data = await getMyVideo(page, limit)
     setData(data)
   }
+
   return (
-    <div>
+    <div onScroll={onScroll}>
       <Layout>
         <div className='myVideo'>
           <Panel header='My video'>

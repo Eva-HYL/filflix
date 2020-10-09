@@ -72,7 +72,7 @@ const postVideo = (model: VideoUploadModel) => {
       }
     })
     .catch(error => {
-      return error
+      Alert.error(error)
     })
 }
 

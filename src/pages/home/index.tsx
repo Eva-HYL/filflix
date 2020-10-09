@@ -13,18 +13,28 @@ const Home = () => {
   const toUpload = () => {
     route.push('/upload')
   }
+  const [page] = useState(1)
+  const [limit, setLimit] = useState(200)
   const [data, setData] = useState<Videos>({} as Videos)
 
   useEffect(() => {
-    getVideoList(1, 1000)
-  }, [])
+    getVideoList(page, limit)
+  }, [limit, page])
+  const onScroll = (event: React.UIEvent<HTMLDivElement, UIEvent>) => {
+    const container = event.currentTarget.firstChild?.lastChild?.lastChild as Element
+    const height = container.scrollHeight - container.scrollTop - container.clientHeight
 
+    if (height <= 0) {
+      const limitC = limit + 200
+      setLimit(limitC)
+    }
+  }
   const getVideoList = async (page: number, limit: number) => {
     const data = await getVideo(page, limit)
     setData(data)
   }
   return (
-    <>
+    <div onScroll={event => onScroll(event)}>
       <Layout>
         <Panel className='banner'>
           <h1>Welcome to Filflix</h1>
@@ -48,7 +58,7 @@ const Home = () => {
           })}
         </Panel>
       </Layout>
-    </>
+    </div>
   )
 }
 
