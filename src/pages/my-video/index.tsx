@@ -3,6 +3,7 @@ import { Panel } from 'rsuite'
 import { getMyVideo, Videos } from '../../services/video'
 import Layout from '../../components/layout'
 import VideoBox from '../../components/video-box'
+
 import './index.less'
 const MyVideo = () => {
   const [data, setData] = useState<Videos>({} as Videos)

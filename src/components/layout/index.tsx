@@ -3,14 +3,16 @@
 import React, { RefObject, useEffect, useState } from 'react'
 import Head from 'next/head'
 import { Avatar, Button, Content, Dropdown, Header, Input, InputGroup, Nav, Navbar } from 'rsuite'
-import '../../styles/default.less'
 import { Container } from 'next/app'
-import './index.less'
 import Svg from '../Svg'
 import Link from 'next/link'
 import { useRouter } from 'next/dist/client/router'
 import { getLocalStore, getValueFromLocal } from '../../utils/cookie'
 import { User } from '../../services/login'
+
+import '../../styles/default.less'
+import './index.less'
+
 interface LayoutProps {
   children: React.ReactNode
 }

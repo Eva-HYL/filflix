@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import VideoBox from '../../components/video-box'
 import Layout from '../../components/layout'
-import './index.less'
 import { Videos, getVideo } from '../../services/video'
 import Link from 'next/link'
+
+import './index.less'
 
 const Play = () => {
   const [data, setData] = useState<Videos>({} as Videos)

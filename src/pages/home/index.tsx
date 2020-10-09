@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Layout from '../../components/layout'
 import { Button, Panel } from 'rsuite'
-import './index.less'
 import VideoBox from '../../components/video-box'
 import Svg from '../../components/Svg'
 import { useRouter } from 'next/dist/client/router'
 import { getVideo, Videos } from '../../services/video'
+
+import './index.less'
+
 const Home = () => {
   const route = useRouter()
   const toUpload = () => {

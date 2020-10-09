@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { Form, FormGroup, ControlLabel, FormControl, ButtonToolbar, Button, Alert, Schema } from 'rsuite'
 import { postLogin, Account } from '../../services/login'
 import Svg from '../../components/Svg'
-import './index.less'
 import { clearLocalCookie, clearLocalStorage } from '../../utils/cookie'
+
+import './index.less'
 
 const { StringType } = Schema.Types
 const Login = () => {
