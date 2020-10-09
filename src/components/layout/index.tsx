@@ -1,6 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
-/* eslint-disable react/display-name */
-import React, { RefObject, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import { Avatar, Button, Content, Dropdown, Header, Input, InputGroup, Nav, Navbar } from 'rsuite'
 import { Container } from 'next/app'
@@ -12,28 +10,11 @@ import { User } from '../../services/login'
 
 import '../../styles/default.less'
 import './index.less'
+import NavLink from '../nav-link'
 
 interface LayoutProps {
   children: React.ReactNode
 }
-
-const MyLink = React.forwardRef(
-  (
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    props: any,
-    ref: string | ((instance: HTMLAnchorElement | null) => void) | RefObject<HTMLAnchorElement> | null | undefined
-  ) => {
-    const { href, children, as, ...rest } = props
-    return (
-      <Link href={href} as={as}>
-        <a ref={ref} {...rest}>
-          {children}
-        </a>
-      </Link>
-    )
-  }
-)
-const NavLink = (props: { children: string; href: string }) => <Dropdown.Item componentClass={MyLink} {...props} />
 
 const Layout = ({ children }: LayoutProps): React.ReactElement => {
   const route = useRouter()
@@ -90,9 +71,7 @@ const Layout = ({ children }: LayoutProps): React.ReactElement => {
                       }}
                     >
                       <NavLink href='/'>My Account</NavLink>
-
                       <NavLink href='/my-video'>My Video</NavLink>
-
                       <NavLink href='/login'>Sign Out</NavLink>
                     </Dropdown>
                   </Nav>
